@@ -1,21 +1,21 @@
-var control = document.getElementById('control');
-var progressValue = document.querySelector('.progress-value');
+var div    = document.getElementById("mydiv");
+var text   = document.getElementById("text");
 
-var RADIUS = 56;
-var CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+var colors = [
+				["#1abc9c", "TURQUOISE"  ],
+				["#2ecc71", "EMERALD"    ],
+				["#3498db","PETER RIVER" ], 
+				["#9b59b6", "AMETHYST"   ],
+				["#34495e", "WET ASPHALT"],
+				["#e74c3c", "ALIZARIN"   ],
+				["#e67e22", "CARROT"     ]
+			];
 
-function progress(value) {
-	var progress = value / 100;
-	var dashoffset = CIRCUMFERENCE * (1 - progress);
-	
-	console.log('progress:', value + '%', '|', 'offset:', dashoffset)
-	
-	progressValue.style.strokeDashoffset = dashoffset;
+var index  = 1;
+
+function change(){
+	div.style.backgroundColor = colors[index][0];
+	text.innerHTML = colors[index][1];
+
+	index = (index >= colors.length -1) ? 0 : index += 1;
 }
-
-control.addEventListener('input', function(event) {
-	progress(event.target.valueAsNumber);
-});
-
-progressValue.style.strokeDasharray = CIRCUMFERENCE;
-progress(60);
